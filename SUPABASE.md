@@ -342,13 +342,33 @@ NEXT_PUBLIC_TEACHER_ID=00000000-0000-0000-0000-000000000000
 
 ## Vercel'ga joylashtirish
 
-1. Loyihani GitHub'ga yuklang (`.env.local` `.gitignore` da — u yuklanmaydi).
+`.env.local` `.gitignore` da turadi, ya'ni **git'ga tushmaydi** — bu ataylab
+shunday. Demak Vercel kalitlarni ko'rmaydi va ularni panelda alohida berish
+kerak. Bermasangiz sayt ochiladi, lekin bulutga ulanmaydi: ma'lumot bo'sh
+ko'rinadi va yuqori panelda «Cloud» o'rniga «Local» yozuvi turadi.
+
+1. Loyihani GitHub'ga yuklang.
 2. Vercel → **New Project** → repozitoriyni tanlang.
-3. **Environment Variables** bo'limiga o'sha ikkita o'zgaruvchini qo'shing.
-4. **Deploy**.
-5. Supabase → **Authentication → URL Configuration** da **Site URL** ni
-   Vercel manzilingizga o'zgartiring (email tasdiqlash havolalari to'g'ri
-   ishlashi uchun).
+3. **Settings → Environment Variables** ga ikkitasini qo'shing —
+   `.env.local` dagi qiymatlarning aynan o'zi:
+
+   | Name | Qayerdan |
+   | --- | --- |
+   | `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API → Project URL |
+   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | o'sha yerda, `anon public` |
+
+   Har biriga **Production, Preview, Development** — uchalasini belgilang.
+
+4. **Deployments → oxirgi deploy → ⋯ → Redeploy.** Bu qadam majburiy:
+   `NEXT_PUBLIC_` bilan boshlanadigan qiymatlar **build paytida** kodning
+   ichiga yoziladi, shuning uchun saqlashning o'zi kifoya qilmaydi — qayta
+   build bo'lishi shart.
+
+> `anon` kaliti ochiq bo'lishi mo'ljallangan: u brauzerga baribir yuboriladi
+> va uni RLS qo'riqlaydi. `service_role` kalitini bu yerga **hech qachon**
+> qo'ymang — u RLS'ni chetlab o'tadi.
+
+Tekshirish: saytni oching — yuqori panelda **«Cloud»** turishi kerak.
 
 ---
 
