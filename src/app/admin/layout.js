@@ -57,7 +57,7 @@ export default function AdminLayout({ children }) {
         <div className="art">
           <AlertIcon size={28} />
         </div>
-        <h2>{t('admin.notTeacherTitle')}</h2>
+        <h2>{t('admin.notTeacherTitle')}!</h2>
         <Muted $size="13.5px" style={{ marginTop: 10 }}>
           {t('admin.notTeacherBody')}
         </Muted>
